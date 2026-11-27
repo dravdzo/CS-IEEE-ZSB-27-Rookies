@@ -1,23 +1,46 @@
+
 #include <bits/stdc++.h>
 using namespace std;
 
 int main()
 {
     int n;
-    cin >> n;
-    int total = 0;
+    long long x;
+    cin >> n >> x;
+
+    vector<pair<long long, int>> a(n);
 
     for (int i = 0; i < n; i++)
     {
-      int a , b , c  ;
-
-      cin >> a >> b >> c ; 
-
-      if(a+b ==c || a+c == b || b+c == a) 
-        cout << "YES\n";
-    else 
-        cout << "NO\n";
+        cin >> a[i].first;
+        a[i].second = i + 1;
     }
+
+    sort(a.begin(), a.end());
+
+    int left = 0;
+    int right = n - 1;
+
+    while (left < right)
+    {
+        long long sum = a[left].first + a[right].first;
+
+        if (sum == x)
+        {
+            cout << a[left].second << " " << a[right].second << '\n';
+            return 0;
+        }
+        else if (sum < x)
+        {
+            left++;
+        }
+        else
+        {
+            right--;
+        }
+    }
+
+    cout << "IMPOSSIBLE\n";
 
     return 0;
 }

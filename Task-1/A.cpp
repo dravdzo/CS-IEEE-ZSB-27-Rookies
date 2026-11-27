@@ -1,15 +1,40 @@
+
 #include <bits/stdc++.h>
 using namespace std;
 
 int main()
 {
-    int x;
-    cin >> x;
+    string s;
+    cin >> s;
 
-    if (x > 2 && x % 2 == 0)
-        cout << "YES\n";
-    else
-        cout << "NO\n";
+    stack<char> st;
+
+    for (char c : s)
+    {
+        st.push(c);
+    }
+
+    int c = 1, mx = 1;
+
+    while (st.size() > 1)
+    {
+        char last = st.top();
+        st.pop();
+
+        if (last == st.top())
+        {
+            c++;
+        }
+        else
+        {
+            mx = max(mx, c);
+            c = 1;
+        }
+    }
+
+    mx = max(mx, c);
+
+    cout << mx << endl;
 
     return 0;
 }

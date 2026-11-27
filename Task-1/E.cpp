@@ -1,21 +1,35 @@
-#include <bits/stdc++.h>
+
+#include <iostream>
+#include <stack>
 using namespace std;
 
 int main()
 {
     int n;
     cin >> n;
-    int total = 0;
 
-    for (int i = 0; i < n; i++)
+    stack<pair<int, int>> s;
+
+    for (int i = 1; i <= n; i++)
     {
-        char x;
+        int x;
         cin >> x;
 
-        if (x == 'c' || x == 'o' || x == 'd' || x == 'e' || x == 'f' || x == 'r' || x == 's')
-            cout << "YES\n";
+        while (!s.empty() && s.top().first >= x)
+        {
+            s.pop();
+        }
+
+        if (s.empty())
+        {
+            cout << 0 << " ";
+        }
         else
-            cout << "NO\n";
+        {
+            cout << s.top().second << " ";
+        }
+
+        s.push({x, i});
     }
 
     return 0;

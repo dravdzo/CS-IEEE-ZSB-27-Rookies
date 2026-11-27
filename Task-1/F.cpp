@@ -1,16 +1,38 @@
+
 #include <bits/stdc++.h>
 using namespace std;
 
 int main()
 {
-    int n;
-    cin >> n;
+    int x, n;
+    cin >> x >> n;
 
-    int x = n % 100;
+    vector<int> w(n + 1);
+    for (int i = 1; i <= n; i++)
+        cin >> w[i];
 
-    if (x < 10)
-        cout << 0;
+    int q;
+    cin >> q;
 
-    cout << x;
+    set<int> s;
+
+    while (q)
+    {
+        int p;
+        cin >> p;
+
+        if (s.insert(p).second)
+            x += w[p];
+        else
+        {
+            s.erase(p);
+            x -= w[p];
+        }
+
+        cout << x << '\n';
+
+        q--;
+    }
+
     return 0;
 }
